@@ -8,8 +8,8 @@ def getFtpPublishProfile(def publishProfilesJson) {
 }
 
 node {
-  withEnv(['AZURE_SUBSCRIPTION_ID=<subscription_id>',
-        'AZURE_TENANT_ID=<tenant_id>']) {
+  withEnv(['AZURE_SUBSCRIPTION_ID=4ab87186-65ae-4fea-b37a-877edcb1d208',
+        'AZURE_TENANT_ID=667d8bc2-ac29-4294-8e84-40f3c4defef4']) {
     stage('init') {
       checkout scm
     }
@@ -22,7 +22,7 @@ node {
       def resourceGroup = 'Loki'
       def webAppName = 'sampleberm'
       // login Azure
-  	  withCredentials([azureServicePrincipal(credentialsId: '4ab87186-65ae-4fea-b37a-877edcb1d208', passwordVariable: 'AZURE_CLIENT_SECRET', usernameVariable: 'AZURE_CLIENT_ID', tenantIdVariable: 'AZURE_TENANT_ID')]) {
+  	  withCredentials([azureServicePrincipal(credentialsId: 'd1d3771d-c722-444c-8ccb-4d9decdaf5c0', passwordVariable: 'AZURE_CLIENT_SECRET', usernameVariable: 'AZURE_CLIENT_ID', tenantIdVariable: 'AZURE_TENANT_ID')]) {
    	  sh '''
       		az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID
       	  	az account set -s 667d8bc2-ac29-4294-8e84-40f3c4defef4
