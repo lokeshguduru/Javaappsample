@@ -23,7 +23,8 @@ node {
       def imageName = '<registry>'
       // generate version, it's important to remove the trailing new line in git describe output
       def version = sh script: 'git describe | tr -d "\n"', returnStdout: true
-      withCredentials([usernamePassword(credentialsId: 'eac082ad-4ec7-407d-add3-900a0f5381be', passwordVariable: 'AZURE_CLIENT_SECRET', usernameVariable: 'AZURE_CLIENT_ID')]) {
+      withCredentials([usernamePassword(credentialsId: 'eac082ad-4ec7-407d-add3-900a0f5381be', passwordVariable: 'ftl8Q~-eMsrFEDpMZpR9O.LYMvIIEdNsQVjvGbk4
+5263fc3b-244f-4869-937e-ed3a3936bf05', usernameVariable: 'd1d3771d-c722-444c-8ccb-4d9decdaf5c0')]) {
         // login Azure
         sh '''
           az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID
