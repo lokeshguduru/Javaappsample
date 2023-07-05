@@ -6,8 +6,8 @@ def getAcrLoginServer(def acrSettingsJson) {
 }
 
 node {
- withEnv(['AZURE_SUBSCRIPTION_ID=<mySubscriptionId>',
-        'AZURE_TENANT_ID=<myTenantId>']) {
+ withEnv(['AZURE_SUBSCRIPTION_ID=4ab87186-65ae-4fea-b37a-877edcb1d208',
+        'AZURE_TENANT_ID=667d8bc2-ac29-4294-8e84-40f3c4defef4']) {
     stage('init') {
       checkout scm
     }
@@ -18,12 +18,12 @@ node {
   
     stage('deploy') {
       def webAppResourceGroup = 'pcappservicelinuxrg'
-      def webAppName = '<resource_group>'
-      def acrName = '<app_name>'
+      def webAppName = 'loki'
+      def acrName = 'sampleberm'
       def imageName = '<registry>'
       // generate version, it's important to remove the trailing new line in git describe output
       def version = sh script: 'git describe | tr -d "\n"', returnStdout: true
-      withCredentials([usernamePassword(credentialsId: '<service_principal>', passwordVariable: 'AZURE_CLIENT_SECRET', usernameVariable: 'AZURE_CLIENT_ID')]) {
+      withCredentials([usernamePassword(credentialsId: 'eac082ad-4ec7-407d-add3-900a0f5381be', passwordVariable: 'AZURE_CLIENT_SECRET', usernameVariable: 'AZURE_CLIENT_ID')]) {
         // login Azure
         sh '''
           az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID
